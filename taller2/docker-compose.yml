@@ -1,8 +1,6 @@
 version: "3.5"
 
 services:
-
-
     web1:
         build: ./server1
         container_name: web1
@@ -10,7 +8,6 @@ services:
             - "./nfs:/var/www/html/"
         ports:
             - "81:80"
-        
     web2:
         build: ./server2
         container_name: web2
@@ -18,20 +15,8 @@ services:
             - "./nfs:/var/www/html/"
         ports:
             - "82:80"
-
     haproxy:
         build: ./haproxy
         container_name: haproxy
-        volumes:
-            - logging:/sidecar
         ports:
             - "80:80"
-
-    syslog-sidecar:
-        build: ./logging
-        container_name: logging
-        volumes:
-            - logging:/sidecar
-
-volumes:
-    logging:
