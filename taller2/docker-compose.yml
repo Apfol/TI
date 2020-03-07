@@ -1,20 +1,21 @@
-# Author: Jonny Langefeld
-# Docker Version: 1.13.0
-# Docker Compose Version: 1.10.1
-#
-
-version: "3"
+version: "3.5"
 
 services:
+
+
     web1:
-        image: dockercloud/hello-world
+        build: ./server1
         container_name: web1
+        volumes:
+            - "./nfs:/var/www/html/"
         ports:
             - "81:80"
-
+        
     web2:
-        image: dockercloud/hello-world
+        build: ./server2
         container_name: web2
+        volumes:
+            - "./nfs:/var/www/html/"
         ports:
             - "82:80"
 
